@@ -5,10 +5,16 @@ import { Menu, Search, ShoppingBag, User, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 import { NAV_LINKS } from "@/lib/shop";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const cart = useCartStore((state) => state.cart);
+ const cart = useCartStore((state) => state.cart);
+
+console.log("CART:", cart);
+  const cartCount = cart.reduce(
+  (total, item) => total + item.qty,
+  0
+);
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
       <div className="mx-auto flex max-w-330 items-center justify-between gap-4 px-6 py-4 md:px-8">
@@ -41,11 +47,11 @@ export default function Navbar() {
 >
   <ShoppingBag className="h-5 w-5" />
 
-  {cart.length > 0 && (
-    <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-slate-900 text-xs text-white">
-      {cart.length}
-    </span>
-  )}
+  {cartCount > 0 && (
+  <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-slate-900 text-xs text-white">
+    {cartCount}
+  </span>
+)}
 </a>
             <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50">
               <User className="h-5 w-5" />
