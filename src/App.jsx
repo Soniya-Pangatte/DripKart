@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+
+// Import all your pages here
 import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -9,6 +11,11 @@ import SignupPage from "./pages/SignupPage";
 import ProductPage from "./pages/ProductPage";
 import TestPage from "./pages/TestPage";
 
+// Add the new pages we created
+import ShopPage from "./pages/ShopPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+
 export default function App() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -16,6 +23,13 @@ export default function App() {
       <main className="min-h-screen">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          
+          {/* New Routes connected to your Navbar */}
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          
+          {/* Existing Routes */}
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/login" element={<LoginPage />} />

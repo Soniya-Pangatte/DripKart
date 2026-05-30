@@ -4,8 +4,14 @@ import { useCartStore } from "@/lib/cartStore";
 import { Menu, Search, ShoppingBag, User, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
-import { NAV_LINKS } from "@/lib/shop";
 import { Link } from "react-router-dom";
+
+// Defined locally to replace the old import from "@/lib/shop"
+const NAV_LINKS = [
+  { label: "Shop", href: "/shop" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" }
+];
 
 export default function Navbar() {
  const cart = useCartStore((state) => state.cart);
