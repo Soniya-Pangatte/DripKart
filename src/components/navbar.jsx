@@ -1,13 +1,14 @@
 "use client"
 
+import { Link } from "react-router-dom";
 import { useCartStore } from "@/lib/cartStore";
 import { Menu, Search, ShoppingBag, User, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
-import { Link } from "react-router-dom";
 
 // Defined locally to replace the old import from "@/lib/shop"
 const NAV_LINKS = [
+  { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" }
@@ -24,7 +25,7 @@ console.log("CART:", cart);
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
       <div className="mx-auto flex max-w-330 items-center justify-between gap-4 px-6 py-4 md:px-8">
-        <a href="#" className="flex items-center gap-3 text-slate-900">
+        <Link to="/" className="flex items-center gap-3 text-slate-900">
           <span className="inline-flex h-12 w-12 items-center justify-center rounded-md bg-slate-100 text-slate-900">
             <Sparkles className="h-5 w-5" />
           </span>
@@ -32,13 +33,13 @@ console.log("CART:", cart);
             <span className="text-sm font-semibold uppercase tracking-[0.28em]">DripKart</span>
             <span className="text-xs text-slate-500">Minimal essentials</span>
           </div>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
-            <a key={link.label} href={link.href} className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
+            <Link key={link.label} to={link.href} className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -47,8 +48,8 @@ console.log("CART:", cart);
             <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50">
               <Search className="h-5 w-5" />
             </button>
-          <a
-  href="/cart"
+          <Link
+  to="/cart"
   className="relative inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50"
 >
   <ShoppingBag className="h-5 w-5" />
@@ -58,25 +59,23 @@ console.log("CART:", cart);
     {cartCount}
   </span>
 )}
-</a>
+</Link>
             <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50">
               <User className="h-5 w-5" />
             </button>
-     <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
+              <Link to="/login">
+                <button className="px-4 py-2 rounded-md border border-slate-300 hover:bg-slate-50">
+                  Login
+                </button>
+              </Link>
 
-  <Link href="/login">
-    <button className="px-4 py-2 rounded-md border border-slate-300">
-      Login
-    </button>
-  </Link>
-
-  <Link href="/signup">
-    <button className="px-4 py-2 rounded-md bg-slate-900 text-white">
-      Sign Up
-    </button>
-  </Link>
-
-</div>
+              <Link to="/signup">
+                <button className="px-4 py-2 rounded-md bg-slate-900 text-white hover:bg-slate-800">
+                  Sign Up
+                </button>
+              </Link>
+            </div>
           </div>
 
           <Sheet>
@@ -100,21 +99,30 @@ console.log("CART:", cart);
 
               <div className="mt-8 flex flex-col gap-5">
                 {NAV_LINKS.map((link) => (
-                  <a
+                  <Link
                     key={link.label}
-                    href={link.href}
+                    to={link.href}
                     className="rounded-md border border-slate-200 bg-white px-5 py-4 text-lg font-medium text-slate-900 transition hover:border-slate-300 hover:bg-slate-50"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
 
               <div className="mt-8 rounded-md bg-slate-50 p-5 border border-slate-200">
                 <p className="text-sm text-slate-600">Elevate your wardrobe.</p>
-                <Button className="mt-5 w-full rounded-md px-5 py-3 text-sm bg-slate-900 text-white hover:bg-slate-800">
-                  Login
-                </Button>
+                <div className="mt-5 flex gap-3">
+                  <Link to="/login" className="flex-1">
+                    <Button className="w-full rounded-md px-5 py-3 text-sm border border-slate-300 bg-white text-slate-900 hover:bg-slate-100">
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to="/signup" className="flex-1">
+                    <Button className="w-full rounded-md px-5 py-3 text-sm bg-slate-900 text-white hover:bg-slate-800">
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </SheetContent>
           </Sheet>
