@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useCartStore } from "@/lib/cartStore";
-import { Button } from "@/components/ui/button";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
@@ -10,53 +9,58 @@ export default function CartPage() {
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+    <div className="max-w-5xl mx-auto p-6 md:p-12 min-h-[60vh]">
+      <h1 className="text-4xl font-serif font-light mb-10 text-[var(--text-primary)]">Your Cart</h1>
 
       {cart.length === 0 ? (
-        <p className="text-slate-500">Your cart is empty 🛒</p>
+        <div className="text-center py-20">
+          <p className="text-[var(--text-muted)] text-lg mb-6">Your cart is currently empty.</p>
+          <Link to="/shop">
+            <button className="luxury-button-primary">Continue Shopping</button>
+          </Link>
+        </div>
       ) : (
         <>
           <div className="space-y-4">
             {cart.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between border p-4 rounded-lg"
+                className="flex items-center justify-between border border-[var(--border-primary)] bg-[var(--surface-card)] p-5 rounded-2xl shadow-sm"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-6">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-16 h-16 object-cover rounded"
+                    className="w-20 h-20 object-cover rounded-xl border border-[var(--border-primary)]"
                   />
                   <div>
-                    <h2 className="font-semibold">{item.name}</h2>
-                    <p className="text-slate-600">
+                    <h2 className="font-serif font-medium text-lg text-[var(--text-primary)]">{item.name}</h2>
+                    <p className="text-[var(--text-secondary)] mt-1">
                       ₹{item.price} × {item.qty}
                     </p>
                   </div>
                 </div>
 
-                <Button
-                  variant="destructive"
+                <button
                   onClick={() => removeFromCart(item.id)}
+                  className="text-sm font-medium text-red-700 hover:text-red-900 transition underline underline-offset-4"
                 >
                   Remove
-                </Button>
+                </button>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 border-t pt-6 flex items-center justify-between">
-            <h2 className="text-xl font-semibold">Total: ₹{total}</h2>
+          <div className="mt-12 border-t border-[var(--border-primary)] pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <h2 className="text-2xl font-serif font-medium text-[var(--text-primary)]">Total: ₹{total}</h2>
 
-            <div className="flex gap-3">
-              <Button variant="outline" onClick={clearCart}>
+            <div className="flex gap-4 w-full md:w-auto">
+              <button onClick={clearCart} className="luxury-button-secondary flex-1 md:flex-none">
                 Clear Cart
-              </Button>
+              </button>
 
-              <Link to="/checkout">
-                <Button className="bg-slate-900 text-white">Checkout</Button>
+              <Link to="/checkout" className="flex-1 md:flex-none">
+                <button className="luxury-button-primary w-full">Checkout</button>
               </Link>
             </div>
           </div>

@@ -7,16 +7,7 @@ const BANNERS = [
   {
     id: 1,
     image: "hg2.jpg", // Desktop banner
-    mobileImage: "hg2.jpgx", // Mobile banner
-    title: "EVERYDAY FASHION DEALS",
-    subtitle: "Premium Shirts & Combos",
-    deal: "FLAT 60% OFF",
-    link: "/shop"
-  },
-  {
-    id: 1,
-    image: "high.jpg", // Desktop banner
-    mobileImage: "high.jpg", // Mobile banner
+    mobileImage: "hg2.jpg", // Mobile banner
     title: "EVERYDAY FASHION DEALS",
     subtitle: "Premium Shirts & Combos",
     deal: "FLAT 60% OFF",
@@ -65,7 +56,7 @@ export default function HeroSection() {
   const currentBanner = BANNERS[currentIndex];
 
   return (
-    <section className="w-full relative h-[60vh] md:h-[85vh] bg-zinc-100 overflow-hidden font-sans select-none">
+    <section className="w-full relative h-[60vh] md:h-[85vh] overflow-hidden select-none">
       
       {/* 1. Dynamic Background Image Slider Window */}
       <AnimatePresence mode="wait">
@@ -88,7 +79,7 @@ export default function HeroSection() {
             />
           </picture>
           {/* Ambient Contrast Tint Mask */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#2E2723]/30 via-transparent to-[#2E2723]/30" />
         </motion.div>
       </AnimatePresence>
 
@@ -99,7 +90,7 @@ export default function HeroSection() {
             key={`sub-${currentBanner.id}`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-xs md:text-sm font-bold tracking-widest text-indigo-300 bg-indigo-950/40 inline-block px-3 py-1 rounded-full backdrop-blur-sm"
+            className="text-xs md:text-sm font-medium tracking-widest text-[var(--surface-card)] bg-white/20 border border-white/30 inline-block px-4 py-2 rounded-full backdrop-blur-sm uppercase"
           >
             {currentBanner.subtitle}
           </motion.p>
@@ -108,16 +99,16 @@ export default function HeroSection() {
             key={`title-${currentBanner.id}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-6xl font-black tracking-tight leading-tight text-white drop-shadow-md"
+            className="text-3xl md:text-6xl font-serif font-light tracking-tight leading-tight text-white drop-shadow-md"
           >
             {currentBanner.title} <br />
-            <span className="text-amber-400 font-extrabold">{currentBanner.deal}</span>
+            <span className="font-serif font-medium text-[var(--surface-input)]">{currentBanner.deal}</span>
           </motion.h1>
 
-          <div className="pt-2">
+          <div className="pt-4">
             <Link
               to="/shop"
-              className="inline-block bg-white text-indigo-950 font-bold px-8 py-3.5 rounded-xl hover:bg-amber-400 hover:text-indigo-950 transition duration-300 shadow-xl text-xs tracking-wider uppercase"
+              className="luxury-button-primary inline-block bg-white text-[var(--text-primary)] hover:bg-[var(--surface-input)]"
             >
               Shop Collection
             </Link>
@@ -128,13 +119,13 @@ export default function HeroSection() {
       {/* 3. Manual Pagination Arrows */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center text-sm backdrop-blur-xs transition opacity-0 hover:opacity-100 md:opacity-100"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-sm backdrop-blur-sm transition opacity-0 hover:opacity-100 md:opacity-100 border border-white/30"
       >
         ❮
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center text-sm backdrop-blur-xs transition opacity-0 hover:opacity-100 md:opacity-100"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-sm backdrop-blur-sm transition opacity-0 hover:opacity-100 md:opacity-100 border border-white/30"
       >
         ❯
       </button>
@@ -145,8 +136,8 @@ export default function HeroSection() {
           <button
             key={banner.id}
             onClick={() => setCurrentIndex(index)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              currentIndex === index ? "w-8 bg-amber-400" : "w-2 bg-white/50 hover:bg-white"
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              currentIndex === index ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/80"
             }`}
           />
         ))}

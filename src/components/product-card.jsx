@@ -12,83 +12,68 @@ export default function ProductCard({ product }) {
   );
 
   return (
-    <article className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 transition-shadow duration-300 hover:shadow-sm">
+    <article className="luxury-card group relative overflow-hidden p-5 flex flex-col h-full">
 
-      <div className="space-y-5">
+      <div className="space-y-5 flex flex-col h-full">
 
         {/* CATEGORY */}
         <div className="flex items-center justify-between">
-          <span className="rounded-md bg-slate-50 px-3 py-2 text-xs uppercase tracking-[0.3em] text-slate-600 border border-slate-200">
+          <span className="rounded-full bg-[var(--surface-input)] px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.2em] font-medium text-[var(--text-secondary)] border border-[var(--border-primary)]">
             {product.category}
           </span>
         </div>
 
         {/* IMAGE */}
-      <div className="relative overflow-hidden rounded-lg bg-slate-100">
-  <img
-    src={product.image}
-    alt={product.name}
-    className="aspect-4/5 w-full object-cover rounded-lg"
-  />
-</div>
-
-<Link href={`/product/${product.id}`}>
-  <article className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 transition-shadow duration-300 hover:shadow-sm">
-    ...
-  </article>
-</Link>
+        <Link to={`/product/${product.id}`} className="block relative overflow-hidden rounded-xl bg-[var(--bg-section)] aspect-4/5">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+        </Link>
 
         {/* INFO */}
-        <div className="space-y-3">
+        <div className="space-y-4 flex-grow flex flex-col justify-end">
 
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex items-start justify-between gap-3">
 
             <div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                {product.name}
-              </h3>
+              <Link to={`/product/${product.id}`} className="hover:underline underline-offset-4 decoration-[var(--border-primary)] transition-all">
+                <h3 className="text-lg font-serif font-medium text-[var(--text-primary)] leading-snug">
+                  {product.name}
+                </h3>
+              </Link>
 
-              <p className="text-sm text-slate-600">
+              <p className="text-sm font-medium text-[var(--text-secondary)] mt-1">
                 ₹{product.price}
               </p>
             </div>
 
-            <div className="rounded-md bg-slate-50 border border-slate-200 px-3 py-2 text-sm text-slate-600">
-
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 text-slate-900" />
-                <span>{product.rating}</span>
-              </div>
-
-              <span className="text-[0.7rem] text-slate-500">
-                ({product.reviews})
-              </span>
-
+            <div className="shrink-0 rounded-full bg-[var(--surface-input)] border border-[var(--border-primary)] px-2.5 py-1.5 text-xs text-[var(--text-secondary)] flex items-center gap-1.5 shadow-[inset_0_1px_2px_rgba(255,255,255,0.5)]">
+              <Star className="h-3.5 w-3.5 text-[var(--accent)] fill-current" />
+              <span className="font-medium">{product.rating}</span>
             </div>
 
           </div>
 
           {/* BUTTONS */}
-          <div className="flex items-center gap-4">
-
-            <Button
+          <div className="flex items-center gap-3 pt-1">
+            <button
               onClick={() => {
-  console.log("ADDING:", product);
-  addToCart(product);
-}}
-              className="rounded-md bg-slate-900 text-white px-4 py-2 hover:bg-slate-800 flex-1"
+                console.log("ADDING:", product);
+                addToCart(product);
+              }}
+              className="luxury-button-primary flex-1 py-3 text-sm flex items-center justify-center gap-2"
             >
               Add to Cart
-            </Button>
+            </button>
 
-            <Button
-              variant="outline"
-              size="sm"
-              className="rounded-md px-4 py-2 border-slate-200 text-slate-600 hover:bg-slate-50"
+            <button
+              className="luxury-button-secondary p-3 flex-shrink-0 flex items-center justify-center"
+              aria-label="Add to wishlist"
             >
               <ShoppingBag className="h-4 w-4" />
-            </Button>
-
+            </button>
           </div>
 
         </div>

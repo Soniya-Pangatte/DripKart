@@ -33,8 +33,8 @@ export default function ShopPage() {
   // Minimalist loading state
   if (loading) {
     return (
-      <div className="flex h-[600px] items-center justify-center bg-white text-slate-900">
-        <p className="text-sm font-semibold tracking-widest uppercase">Loading collection...</p>
+      <div className="flex h-[600px] items-center justify-center bg-[var(--bg-primary)] text-[var(--text-primary)]">
+        <p className="text-sm font-medium tracking-widest uppercase text-[var(--text-secondary)]">Loading collection...</p>
       </div>
     );
   }
@@ -42,33 +42,34 @@ export default function ShopPage() {
   // Minimalist error state
   if (error) {
     return (
-      <div className="flex h-[600px] items-center justify-center bg-white text-slate-900">
-        <p className="text-lg font-light text-red-500">Failed to load products: {error}</p>
+      <div className="flex h-[600px] items-center justify-center bg-[var(--bg-primary)] text-[var(--text-primary)]">
+        <p className="text-lg font-light text-red-700 bg-red-50 p-4 rounded-xl border border-red-200">Failed to load products: {error}</p>
       </div>
     );
   }
 
   return (
-    <main className="flex-grow bg-white text-slate-900 antialiased py-20 px-10 max-w-7xl mx-auto w-full">
+    <main className="flex-grow bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased py-20 px-6 md:px-10 max-w-7xl mx-auto w-full min-h-[80vh]">
       <div className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-light mb-4">Shop All</h1>
-        <p className="text-slate-600 font-light text-lg">Discover our complete collection.</p>
+        <h1 className="text-4xl md:text-5xl font-serif font-light mb-4">Shop All</h1>
+        <p className="text-[var(--text-secondary)] font-light text-lg">Discover our complete collection.</p>
       </div>
 
       {/* The Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
         {products.map((product) => (
-          <Link to={`/product/${product.id}`} key={product.id} className="group cursor-pointer block">
-            <div className="overflow-hidden mb-4 bg-slate-50 flex items-center justify-center">
-              {/* Changed object-cover to object-contain and added p-4 */}
+          <Link to={`/product/${product.id}`} key={product.id} className="luxury-card group cursor-pointer block p-5">
+            <div className="overflow-hidden mb-5 rounded-xl bg-[var(--bg-section)] border border-[var(--border-primary)] flex items-center justify-center">
               <img 
                 src={product.image} 
                 alt={product.name} 
-                className="w-full h-[450px] object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                className="w-full h-[350px] md:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
               />
             </div>
-            <h3 className="text-lg font-light text-slate-900">{product.name}</h3>
-            <p className="text-slate-600 mt-2 font-light">₹{product.price}</p> 
+            <h3 className="text-lg font-serif font-medium text-[var(--text-primary)] leading-tight hover:underline underline-offset-4 decoration-[var(--border-primary)] transition-all">
+              {product.name}
+            </h3>
+            <p className="text-[var(--text-secondary)] mt-1.5 font-medium">₹{product.price}</p> 
           </Link>
         ))}
       </div>

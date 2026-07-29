@@ -28,27 +28,27 @@ export default function FeaturedProducts() {
   return (
     <section id="shop" className="mt-28">
       <div className="mx-auto max-w-3xl space-y-4 text-center">
-        <p className="text-sm uppercase tracking-[0.35em] text-slate-500">
+        <p className="text-sm uppercase tracking-[0.35em] text-[var(--text-muted)]">
           Featured Products
         </p>
 
-        <h2 className="text-4xl font-semibold text-slate-900 sm:text-5xl">
+        <h2 className="text-4xl font-serif font-light text-[var(--text-primary)] sm:text-5xl">
           Designed for minimal presence.
         </h2>
 
-        <p className="mx-auto max-w-2xl text-base leading-8 text-slate-600">
-          A curated lineup of simple and clean products from Supabase.
+        <p className="mx-auto max-w-2xl text-base leading-8 text-[var(--text-secondary)]">
+          A curated lineup of refined essentials crafted for a quiet lifestyle.
         </p>
       </div>
 
       {loading && (
-        <p className="text-center mt-10 text-slate-500">
+        <p className="text-center mt-10 text-[var(--text-muted)]">
           Loading products...
         </p>
       )}
 
       {error && (
-        <p className="text-red-500 text-center mt-4">
+        <p className="text-red-800 bg-red-50 p-4 rounded-xl border border-red-200 text-center mt-4">
           {error.message}
         </p>
       )}

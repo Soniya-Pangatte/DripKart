@@ -4,7 +4,7 @@ import TestimonialsSection from "@/sections/testimonials-section";
 
 export default function HomePage() {
   return (
-    <main className="flex-grow bg-white text-slate-900 antialiased">
+    <main className="flex-grow bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased">
       {/* 1. Split-screen Hero (Handles its own full width) */}
       <HeroSection />
 

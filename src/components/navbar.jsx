@@ -6,7 +6,6 @@ import { Menu, Search, ShoppingBag, User, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 
-// Defined locally to replace the old import from "@/lib/shop"
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
@@ -15,86 +14,89 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
- const cart = useCartStore((state) => state.cart);
-
-console.log("CART:", cart);
+  const cart = useCartStore((state) => state.cart);
   const cartCount = cart.reduce(
-  (total, item) => total + item.qty,
-  0
-);
+    (total, item) => total + item.qty,
+    0
+  );
+
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
-      <div className="mx-auto flex max-w-330 items-center justify-between gap-4 px-6 py-4 md:px-8">
-        <Link to="/" className="flex items-center gap-3 text-slate-900">
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-md bg-slate-100 text-slate-900">
+    <header className="sticky top-0 z-50 bg-[var(--bg-nav)] border-b border-[var(--border-primary)] backdrop-blur-md shadow-[0_4px_20px_rgba(46,39,35,0.02)]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 md:px-8">
+        
+        {/* Brand Logo */}
+        <Link to="/" className="flex items-center gap-3 text-[var(--text-primary)]">
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--bg-section)] text-[var(--text-primary)] shadow-sm">
             <Sparkles className="h-5 w-5" />
           </span>
           <div className="flex flex-col leading-tight">
             <span className="text-sm font-semibold uppercase tracking-[0.28em]">DripKart</span>
-            <span className="text-xs text-slate-500">Minimal essentials</span>
+            <span className="text-xs text-[var(--text-secondary)]">Quiet luxury essentials</span>
           </div>
         </Link>
 
+        {/* Desktop Navigation */}
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
-            <Link key={link.label} to={link.href} className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
+            <Link key={link.label} to={link.href} className="text-sm font-medium text-[var(--text-secondary)] transition hover:text-[var(--text-primary)]">
               {link.label}
             </Link>
           ))}
         </nav>
 
+        {/* Actions */}
         <div className="flex items-center gap-3">
           <div className="hidden items-center gap-3 md:flex">
-            <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50">
+            <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-primary)] bg-transparent text-[var(--text-secondary)] transition hover:bg-[var(--btn-secondary-hover)] hover:border-[var(--btn-primary)]">
               <Search className="h-5 w-5" />
             </button>
-          <Link
-  to="/cart"
-  className="relative inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50"
->
-  <ShoppingBag className="h-5 w-5" />
-
-  {cartCount > 0 && (
-  <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-slate-900 text-xs text-white">
-    {cartCount}
-  </span>
-)}
-</Link>
-            <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50">
+            <Link
+              to="/cart"
+              className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-primary)] bg-transparent text-[var(--text-secondary)] transition hover:bg-[var(--btn-secondary-hover)] hover:border-[var(--btn-primary)]"
+            >
+              <ShoppingBag className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--btn-primary)] text-white text-[0.65rem] font-medium">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+            <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-primary)] bg-transparent text-[var(--text-secondary)] transition hover:bg-[var(--btn-secondary-hover)] hover:border-[var(--btn-primary)]">
               <User className="h-5 w-5" />
             </button>
-            <div className="flex items-center gap-3">
+            
+            <div className="flex items-center gap-3 ml-2 border-l border-[var(--border-primary)] pl-5">
               <Link to="/login">
-                <button className="px-4 py-2 rounded-md border border-slate-300 hover:bg-slate-50">
+                <button className="luxury-button-secondary">
                   Login
                 </button>
               </Link>
-
               <Link to="/signup">
-                <button className="px-4 py-2 rounded-md bg-slate-900 text-white hover:bg-slate-800">
+                <button className="luxury-button-primary">
                   Sign Up
                 </button>
               </Link>
             </div>
           </div>
 
+          {/* Mobile Menu Toggle */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden text-slate-900">
+              <button className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full text-[var(--text-primary)] hover:bg-[var(--btn-secondary-hover)] transition">
                 <Menu className="h-5 w-5" />
-              </Button>
+              </button>
             </SheetTrigger>
-            <SheetContent className="bg-white">
+            <SheetContent className="bg-[var(--bg-primary)] border-[var(--border-primary)]">
               <SheetHeader>
                 <div className="flex items-center justify-between gap-3">
-                  <SheetTitle className="text-slate-900">Menu</SheetTitle>
+                  <SheetTitle className="text-[var(--text-primary)] font-serif font-normal">Menu</SheetTitle>
                   <SheetClose asChild>
-                    <button className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50">
+                    <button className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-primary)] bg-transparent text-[var(--text-secondary)] transition hover:bg-[var(--btn-secondary-hover)]">
                       <X className="h-5 w-5" />
                     </button>
                   </SheetClose>
                 </div>
-                <SheetDescription className="text-slate-500">Navigate our collections.</SheetDescription>
+                <SheetDescription className="text-[var(--text-muted)]">Navigate our collections.</SheetDescription>
               </SheetHeader>
 
               <div className="mt-8 flex flex-col gap-5">
@@ -102,25 +104,25 @@ console.log("CART:", cart);
                   <Link
                     key={link.label}
                     to={link.href}
-                    className="rounded-md border border-slate-200 bg-white px-5 py-4 text-lg font-medium text-slate-900 transition hover:border-slate-300 hover:bg-slate-50"
+                    className="rounded-2xl border border-[var(--border-primary)] bg-[var(--surface-card)] px-5 py-4 text-lg font-medium text-[var(--text-primary)] transition hover:border-[var(--btn-primary)] hover:shadow-sm"
                   >
                     {link.label}
                   </Link>
                 ))}
               </div>
 
-              <div className="mt-8 rounded-md bg-slate-50 p-5 border border-slate-200">
-                <p className="text-sm text-slate-600">Elevate your wardrobe.</p>
-                <div className="mt-5 flex gap-3">
-                  <Link to="/login" className="flex-1">
-                    <Button className="w-full rounded-md px-5 py-3 text-sm border border-slate-300 bg-white text-slate-900 hover:bg-slate-100">
+              <div className="mt-8 rounded-2xl bg-[var(--bg-section)] p-5 border border-[var(--border-primary)]">
+                <p className="text-sm text-[var(--text-secondary)] mb-5">Elevate your wardrobe.</p>
+                <div className="flex flex-col gap-3">
+                  <Link to="/login" className="w-full">
+                    <button className="luxury-button-secondary w-full">
                       Login
-                    </Button>
+                    </button>
                   </Link>
-                  <Link to="/signup" className="flex-1">
-                    <Button className="w-full rounded-md px-5 py-3 text-sm bg-slate-900 text-white hover:bg-slate-800">
+                  <Link to="/signup" className="w-full">
+                    <button className="luxury-button-primary w-full">
                       Sign Up
-                    </Button>
+                    </button>
                   </Link>
                 </div>
               </div>

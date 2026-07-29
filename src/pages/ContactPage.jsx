@@ -1,72 +1,127 @@
-"use client"
+"use client";
 
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    inquiry: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+  };
+
   return (
-    <main className="flex-grow bg-white text-slate-900 antialiased flex flex-col min-h-screen">
-      
-      {/* Contact Header */}
-      <div className="py-20 px-4 text-center">
-        <h2 className="text-4xl md:text-5xl font-light mb-6">Customer service inquiries</h2>
-        <p className="text-slate-800 font-light">Business Hours: Monday through Sunday, 7 AM – 10 PM</p>
-        <p className="text-slate-800 font-light mt-1">
-          Email: <a href="mailto:info@dripkart.com" className="underline hover:text-slate-500">info@dripkart.com</a>
-        </p>
+    <main className="flex-grow bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased flex items-center justify-center min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl w-full overflow-hidden rounded-[32px] border border-[var(--border)] bg-[var(--surface)] shadow-[0_25px_50px_rgba(44,36,31,0.08)] transition duration-300 hover:shadow-[0_28px_60px_rgba(44,36,31,0.1)]">
+        <div className="bg-[var(--bg-secondary)] border-b border-[var(--border)] px-8 py-12 text-center">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--text-secondary)]">
+            Customer care
+          </p>
+          <h2 className="mx-auto max-w-2xl text-4xl font-light leading-tight tracking-tight text-[var(--text-primary)] md:text-5xl">
+            Inquiries, styling, and tailored service.
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-[var(--text-secondary)]">
+            Reach out for order support, styling advice, and bespoke delivery details. Our quiet luxury concierge is available daily.
+          </p>
+          <p className="mt-8 text-sm text-[var(--text-muted)]">
+            Business Hours: Monday – Sunday, 7 AM – 10 PM ·
+            <a
+              href="mailto:info@dripkart.com"
+              className="ml-1 font-medium text-[var(--text-primary)] underline underline-offset-4 hover:text-[var(--accent-camel)]"
+            >
+              info@dripkart.com
+            </a>
+          </p>
+        </div>
+
+        <div className="p-8 sm:p-12">
+          <form className="space-y-8" onSubmit={handleSubmit}>
+            <div className="grid gap-6 sm:grid-cols-2">
+              {/* First Name */}
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--text-secondary)]">
+                  First Name <span className="text-[var(--accent-terra)]">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your name"
+                  className="luxury-input p-4 text-sm placeholder:text-[var(--text-muted)]"
+                />
+              </div>
+
+              {/* Last Name */}
+              <div className="flex flex-col gap-2">
+                <label htmlFor="lastName" className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--text-secondary)]">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Your last name"
+                  className="luxury-input p-4 text-sm placeholder:text-[var(--text-muted)]"
+                />
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--text-secondary)]">
+                Your Email <span className="text-[var(--accent-terra)]">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Your email address"
+                className="luxury-input p-4 text-sm placeholder:text-[var(--text-muted)]"
+              />
+            </div>
+
+            {/* Inquiry */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="inquiry" className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--text-secondary)]">
+                Your Inquiry <span className="text-[var(--accent-terra)]">*</span>
+              </label>
+              <textarea
+                id="inquiry"
+                rows={6}
+                value={formData.inquiry}
+                onChange={handleChange}
+                required
+                placeholder="Enter your inquiry"
+                className="luxury-input min-h-[170px] p-4 text-sm placeholder:text-[var(--text-muted)] resize-none"
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex justify-center pt-2">
+              <button
+                type="submit"
+                className="luxury-button-primary w-full max-w-xs px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em]"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-
-      {/* Contact Form */}
-      <div className="max-w-3xl mx-auto w-full px-10 mb-24 flex-grow">
-        <form className="space-y-8 flex flex-col" onSubmit={(e) => e.preventDefault()}>
-          
-          <div className="flex flex-col space-y-2">
-            <label htmlFor="name" className="text-slate-800 font-light">Name*</label>
-            <input 
-              type="text" 
-              id="name" 
-              placeholder="Your name" 
-              className="bg-[#f5f5f5] text-slate-900 w-full p-4 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-shadow"
-            />
-          </div>
-
-          <div className="flex flex-col space-y-2">
-            <label htmlFor="lastName" className="text-slate-800 font-light">Last name</label>
-            <input 
-              type="text" 
-              id="lastName" 
-              placeholder="Your last name" 
-              className="bg-[#f5f5f5] text-slate-900 w-full p-4 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-shadow"
-            />
-          </div>
-
-          <div className="flex flex-col space-y-2">
-            <label htmlFor="email" className="text-slate-800 font-light">Your email*</label>
-            <input 
-              type="email" 
-              id="email" 
-              placeholder="Your email address" 
-              className="bg-[#f5f5f5] text-slate-900 w-full p-4 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-shadow"
-            />
-          </div>
-
-          <div className="flex flex-col space-y-2">
-            <label htmlFor="inquiry" className="text-slate-800 font-light">Your inquiry*</label>
-            <textarea 
-              id="inquiry" 
-              rows="5" 
-              placeholder="Enter your inquiry" 
-              className="bg-[#f5f5f5] text-slate-900 w-full p-4 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-shadow resize-none"
-            ></textarea>
-          </div>
-
-          <button 
-            type="submit" 
-            className="bg-black text-white px-12 py-4 text-sm tracking-widest uppercase hover:bg-slate-800 transition-colors mx-auto mt-4 block"
-          >
-            Send
-          </button>
-        </form>
-      </div>
-      
     </main>
   );
 }

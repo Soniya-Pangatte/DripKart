@@ -18,7 +18,7 @@ import ContactPage from "./pages/ContactPage";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Navbar />
       <main className="min-h-screen">
         <Routes>

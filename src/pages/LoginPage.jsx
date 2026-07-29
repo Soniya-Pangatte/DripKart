@@ -25,29 +25,26 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 p-4 font-sans">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-2xl bg-white">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[var(--bg-primary)] p-4 sm:p-8 pt-28 pb-20">
+      <div className="w-full max-w-5xl flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-[var(--shadow-hover)] bg-[var(--surface-card)] border border-[var(--border-primary)]">
         
-        {/* Shared Split Brand Panel */}
+        {/* Shared Split Brand Panel (45%) */}
         <AuthArtPanel />
         
-        {/* Right Form Panel matching Signup layout */}
+        {/* Right Form Panel (55%) */}
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="w-full md:w-3/5 bg-[#f3e8ff] p-8 md:p-12 flex flex-col justify-between min-h-[650px]"
+          className="w-full md:w-[55%] p-8 md:p-14 flex flex-col justify-center min-h-[650px] bg-[var(--surface-card)]"
         >
-          {/* Top Header Row */}
-          <div className="flex justify-end text-xs text-gray-600 mb-6">
-            <span className="cursor-pointer hover:underline">English (UK)</span>
-          </div>
-
-          <div className="max-w-xl w-full mx-auto my-auto">
-            <h2 className="text-3xl font-bold text-indigo-950 mb-8">Welcome Back</h2>
+          <div className="max-w-md w-full mx-auto">
+            <h2 className="text-3xl font-serif text-[var(--text-primary)] mb-8 font-light">
+              Welcome Back
+            </h2>
 
             {authError && (
-              <div className="mb-4 text-sm text-red-600 bg-red-100 border border-red-300 p-3 rounded-xl">
+              <div className="mb-6 text-sm text-red-800 bg-red-50 border border-red-200 p-4 rounded-2xl">
                 {authError}
               </div>
             )}
@@ -61,11 +58,9 @@ export const LoginPage = () => {
                   required 
                   value={email} 
                   onChange={(e) => setEmail(e.target.value)} 
-                  className="w-full px-4 py-3 bg-transparent border border-gray-400 rounded-xl focus:outline-none focus:border-indigo-600 text-gray-800 transition-colors"
+                  className="luxury-input"
+                  placeholder="Email Address"
                 />
-                <label htmlFor="email" className="absolute left-3 top-[-10px] bg-[#f3e8ff] px-1 text-xs text-gray-500">
-                  Email Address
-                </label>
               </div>
 
               {/* Password Input Field */}
@@ -76,50 +71,45 @@ export const LoginPage = () => {
                   required 
                   value={password} 
                   onChange={(e) => setPassword(e.target.value)} 
-                  className="w-full px-4 py-3 bg-transparent border border-gray-400 rounded-xl focus:outline-none focus:border-indigo-600 text-gray-800 transition-colors"
+                  className="luxury-input"
+                  placeholder="Password"
                 />
-                <label htmlFor="password" className="absolute left-3 top-[-10px] bg-[#f3e8ff] px-1 text-xs text-gray-500">
-                  Password
-                </label>
+              </div>
+
+              {/* Sub Links Context Layout */}
+              <div className="flex items-center justify-between gap-2 pt-2 pb-2 text-sm text-[var(--text-secondary)]">
+                <a href="#" className="hover:text-[var(--text-primary)] transition-colors underline underline-offset-4">
+                  Forgot password?
+                </a>
               </div>
 
               {/* Main Submit Action */}
               <button 
                 type="submit" 
                 disabled={loading} 
-                className="w-full py-3.5 bg-indigo-900 hover:bg-indigo-950 text-white font-medium rounded-xl transition duration-200 shadow-md"
+                className="luxury-button-primary w-full"
               >
-                {loading ? "Logging in..." : "Continue to Account"}
+                {loading ? "Logging in..." : "Continue"}
               </button>
 
-              {/* Sub Links Context Layout */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-1 text-xs">
-                <span className="text-gray-600">
-                  Don't have an account? <a href="/signup" className="text-indigo-800 font-semibold hover:underline">Sign up</a>
-                </span>
-                <a href="#" className="text-indigo-800 font-semibold hover:underline bg-indigo-950/10 px-3 py-1.5 rounded-full inline-block text-center">
-                  Forgot password?
-                </a>
-              </div>
             </form>
 
             {/* Visual Text Divider */}
-            <div className="relative flex py-6 items-center">
-              <div className="flex-grow border-t border-gray-400"></div>
-              <span className="flex-shrink mx-4 text-gray-500 text-sm">or</span>
-              <div className="flex-grow border-t border-gray-400"></div>
+            <div className="relative flex py-8 items-center">
+              <div className="flex-grow border-t border-[var(--border-primary)]"></div>
+              <span className="flex-shrink mx-4 text-[var(--text-muted)] text-sm">or</span>
+              <div className="flex-grow border-t border-[var(--border-primary)]"></div>
             </div>
 
             {/* OAuth Federation Layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <button type="button" className="flex items-center justify-center gap-2 py-3 border border-gray-400 rounded-xl bg-transparent hover:bg-white/50 transition text-sm text-gray-700">
-                <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="Google" /> 
-                Log in with Gmail
+            <div className="grid grid-cols-1 gap-4">
+              <button type="button" className="flex items-center justify-center gap-3 py-3.5 border border-[var(--border-primary)] rounded-2xl bg-transparent hover:bg-[var(--bg-section)] transition text-sm text-[var(--text-primary)] font-medium">
+                Continue with Google
               </button>
-              <button type="button" className="flex items-center justify-center gap-2 py-3 border border-gray-400 rounded-xl bg-transparent hover:bg-white/50 transition text-sm text-gray-700">
-                <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" className="w-5 h-5" alt="Facebook" /> 
-                Log in with Facebook
-              </button>
+            </div>
+            
+            <div className="mt-8 text-center text-sm text-[var(--text-secondary)]">
+              Don't have an account? <a href="/signup" className="text-[var(--text-primary)] font-medium hover:underline underline-offset-4">Sign up</a>
             </div>
           </div>
         </motion.div>

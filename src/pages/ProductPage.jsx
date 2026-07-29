@@ -12,7 +12,6 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Interface State Matrices
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(undefined);
   const [selectedSize, setSelectedSize] = useState("M");
 
@@ -32,8 +31,6 @@ export default function ProductPage() {
           setError(error.message);
         } else {
           setProduct(data);
-          
-          // Determine initial color state selection by matching the item name string text
           const matchedIdx = AVAILABLE_COLORS.findIndex(v => 
             data.name.toLowerCase().includes(v.name.toLowerCase())
           );
@@ -43,7 +40,6 @@ export default function ProductPage() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  // Global Color Overlays configuration mimicking multiple asset states instantly
   const AVAILABLE_COLORS = [
     { name: "Baby Pink", hex: "#e1b3d8", tailwindOverlay: "bg-pink-400/20 mix-blend-hue" },
     { name: "Beige", hex: "#bda387", tailwindOverlay: "bg-amber-700/15 mix-blend-hue" },
@@ -56,7 +52,7 @@ export default function ProductPage() {
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-white text-slate-900">
+      <div className="flex h-screen items-center justify-center bg-[var(--bg-primary)] text-[var(--text-primary)]">
         <p className="text-sm font-semibold tracking-widest uppercase">Loading...</p>
       </div>
     );
@@ -64,8 +60,8 @@ export default function ProductPage() {
 
   if (error || !product) {
     return (
-      <div className="flex h-screen items-center justify-center bg-white text-slate-900">
-        <p className="text-lg font-light text-red-500">Product not found</p>
+      <div className="flex h-screen items-center justify-center bg-[var(--bg-primary)] text-[var(--text-primary)]">
+        <p className="text-lg font-light text-red-700">Product not found</p>
       </div>
     );
   }
@@ -99,20 +95,19 @@ export default function ProductPage() {
   };
 
   return (
-    <main className="w-full max-w-7xl mx-auto min-h-screen px-6 py-12 md:py-20 font-sans text-zinc-900 bg-white antialiased">
+    <main className="w-full max-w-7xl mx-auto min-h-screen px-6 py-12 md:py-20 bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Large Product Image Display Container */}
         <div className="w-full flex justify-center">
-          <div className="w-full max-w-[550px] aspect-[3/4] rounded-2xl overflow-hidden bg-zinc-50 relative border border-zinc-100 shadow-sm">
-            <span className="absolute top-4 left-4 bg-amber-400 text-black text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md z-10 shadow-xs">
+          <div className="w-full max-w-[550px] aspect-[3/4] rounded-2xl overflow-hidden bg-[var(--bg-section)] relative border border-[var(--border-primary)] shadow-[var(--shadow-soft)]">
+            <span className="absolute top-4 left-4 bg-[var(--surface-input)] text-[var(--text-secondary)] border border-[var(--border-primary)] text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full z-10 shadow-sm">
               Bestseller
             </span>
-            <button className="absolute top-4 right-4 w-9 h-9 bg-white rounded-full flex items-center justify-center text-zinc-400 hover:text-red-500 shadow-md transition z-10">
+            <button className="absolute top-4 right-4 w-10 h-10 bg-[var(--surface-card)] border border-[var(--border-primary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--accent)] shadow-sm transition z-10">
               <Heart className="w-4 h-4" />
             </button>
             
-            {/* Base Image Engine Loaded from Database Source */}
             <img
               src={product.image}
               alt={product.name}
@@ -120,7 +115,6 @@ export default function ProductPage() {
               style={{ imageRendering: "high-quality" }}
             />
 
-            {/* Dynamic CSS Color Shifting Matrix Overlay Window */}
             <div 
               className={`absolute inset-0 pointer-events-none transition-all duration-500 ${currentVariant.tailwindOverlay}`} 
             />
@@ -128,28 +122,28 @@ export default function ProductPage() {
         </div>
 
         {/* Right Column: Control Selections & Commercial Specifications Panel */}
-        <div className="w-full flex flex-col items-start space-y-6">
-          <div className="space-y-1">
-            <h1 className="text-4xl md:text-5xl font-light tracking-tight text-zinc-950">
+        <div className="w-full flex flex-col items-start space-y-8">
+          <div className="space-y-2">
+            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-[var(--text-primary)]">
               {product.name}
             </h1>
           </div>
 
           <div className="space-y-1">
-            <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-bold text-zinc-950">₹{product.price}</span>
-              <span className="text-base text-zinc-400 line-through">₹{originalPrice}</span>
-              <span className="text-sm font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">
+            <div className="flex items-baseline gap-4">
+              <span className="text-3xl font-serif font-medium text-[var(--text-primary)]">₹{product.price}</span>
+              <span className="text-base text-[var(--text-muted)] line-through">₹{originalPrice}</span>
+              <span className="text-xs font-medium text-[var(--accent)] border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-2.5 py-1 rounded-full">
                 {discountPercent}% OFF
               </span>
             </div>
-            <p className="text-xs text-zinc-400">Earn 10% Cashback on this delivery collection setup</p>
+            <p className="text-sm font-light text-[var(--text-secondary)] mt-2">Earn 10% Cashback on this delivery collection setup</p>
           </div>
 
           {/* Color Switch Swatches Row Selection Matrix */}
-          <div className="space-y-3 w-full">
-            <label className="text-xs uppercase font-bold tracking-widest text-zinc-400 block">
-              Color Combination: <span className="text-zinc-950 font-medium lowercase">({currentVariant.name})</span>
+          <div className="space-y-4 w-full">
+            <label className="text-xs uppercase font-medium tracking-widest text-[var(--text-secondary)] block">
+              Color: <span className="text-[var(--text-primary)] lowercase">{currentVariant.name}</span>
             </label>
             <div className="flex flex-wrap gap-3">
               {finalVariants.map((v, idx) => (
@@ -157,10 +151,10 @@ export default function ProductPage() {
                   key={v.name}
                   onClick={() => handleVariantChange(idx)}
                   title={v.name}
-                  className={`w-10 h-10 rounded-full border-2 transition shrink-0 transform active:scale-95 ${
+                  className={`w-11 h-11 rounded-full border-2 transition shrink-0 transform active:scale-95 ${
                     (selectedVariantIndex !== undefined ? selectedVariantIndex : initialIndex) === idx 
-                      ? "border-zinc-950 ring-4 ring-zinc-900/15 scale-105 shadow-sm" 
-                      : "border-zinc-200 opacity-80 hover:opacity-100"
+                      ? "border-[var(--btn-primary)] ring-4 ring-[var(--btn-primary)]/10 scale-105 shadow-sm" 
+                      : "border-[var(--border-primary)] opacity-80 hover:opacity-100"
                   }`}
                   style={{ backgroundColor: v.hex }}
                 />
@@ -169,24 +163,24 @@ export default function ProductPage() {
           </div>
 
           {/* Size Choice Structural Layout */}
-          <div className="space-y-3 w-full">
+          <div className="space-y-4 w-full">
             <div className="flex items-center justify-between max-w-[320px]">
-              <label className="text-xs uppercase font-bold tracking-widest text-zinc-400">
+              <label className="text-xs uppercase font-medium tracking-widest text-[var(--text-secondary)]">
                 Select Size
               </label>
-              <button className="text-xs font-semibold text-zinc-950 underline hover:text-zinc-600">
+              <button className="text-xs font-medium text-[var(--text-primary)] underline underline-offset-4 hover:text-[var(--text-secondary)]">
                 Size Guide
               </button>
             </div>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-3">
               {["S", "M", "L", "XL", "XXL"].map((sz) => (
                 <button
                   key={sz}
                   onClick={() => setSelectedSize(sz)}
-                  className={`min-w-[54px] h-11 border text-xs font-bold rounded-xl transition ${
+                  className={`min-w-[56px] h-12 border text-sm font-medium rounded-2xl transition ${
                     selectedSize === sz
-                      ? "bg-zinc-950 text-white border-zinc-950 shadow-md"
-                      : "border-zinc-200 text-zinc-800 hover:border-zinc-950"
+                      ? "bg-[var(--btn-primary)] text-white border-[var(--btn-primary)] shadow-sm"
+                      : "border-[var(--border-primary)] text-[var(--text-primary)] hover:border-[var(--btn-primary)] bg-[var(--surface-card)]"
                   }`}
                 >
                   {sz}
@@ -199,24 +193,24 @@ export default function ProductPage() {
           <div className="pt-4 w-full max-w-[320px]">
             <button 
               onClick={handleAddToCart}
-              className="w-full h-14 bg-zinc-950 text-white text-xs uppercase tracking-widest font-bold rounded-xl hover:bg-zinc-900 transition flex items-center justify-center gap-2 shadow-lg"
+              className="luxury-button-primary w-full h-14 flex items-center justify-center gap-2"
             >
-              <ShoppingBag className="w-4 h-4" /> Add Outfit To Bag
+              <ShoppingBag className="w-5 h-5" /> Add Outfit To Bag
             </button>
           </div>
 
           {/* Trust Value Badging Grid */}
-          <div className="border-t border-zinc-100 pt-6 w-full max-w-[450px] grid grid-cols-3 gap-4 text-center text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-            <div className="flex flex-col items-center gap-1.5">
-              <Truck className="w-5 h-5 text-zinc-300" />
+          <div className="border-t border-[var(--border-primary)] pt-8 w-full max-w-[450px] grid grid-cols-3 gap-4 text-center text-[10px] font-medium uppercase tracking-widest text-[var(--text-secondary)]">
+            <div className="flex flex-col items-center gap-2">
+              <Truck className="w-5 h-5 text-[var(--text-muted)]" />
               <span>Fast Shipping</span>
             </div>
-            <div className="flex flex-col items-center gap-1.5">
-              <RotateCcw className="w-5 h-5 text-zinc-300" />
+            <div className="flex flex-col items-center gap-2">
+              <RotateCcw className="w-5 h-5 text-[var(--text-muted)]" />
               <span>7 Day Returns</span>
             </div>
-            <div className="flex flex-col items-center gap-1.5">
-              <ShieldCheck className="w-5 h-5 text-zinc-300" />
+            <div className="flex flex-col items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-[var(--text-muted)]" />
               <span>100% Genuine</span>
             </div>
           </div>
