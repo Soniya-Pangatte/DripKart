@@ -15,12 +15,13 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 md:p-12 min-h-[60vh]">
-      <h1 className="text-4xl font-serif font-light mb-10 text-[var(--text-primary)]">Checkout</h1>
+    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased px-4 sm:px-6 lg:px-8 py-20">
+      <div className="max-w-7xl mx-auto w-full">
+        <h1 className="text-4xl font-serif font-light mb-10 text-[var(--text-primary)]">Checkout</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left Side: Order Summary */}
-        <div className="space-y-6">
+        <div className="space-y-6 rounded-3xl border border-[var(--border-primary)] bg-[var(--surface-card)] p-8 shadow-[var(--shadow-soft)]">
           <h2 className="text-xl font-serif font-medium text-[var(--text-primary)] border-b border-[var(--border-primary)] pb-4">
             Order Summary
           </h2>
@@ -28,7 +29,7 @@ export default function CheckoutPage() {
             {cart.map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between border border-[var(--border-primary)] bg-[var(--surface-card)] p-5 rounded-2xl shadow-sm"
+                className="flex justify-between border border-[var(--border-primary)] bg-[var(--surface-card)] p-5 rounded-3xl shadow-[var(--shadow-soft)]"
               >
                 <div>
                   <h3 className="font-serif font-medium text-[var(--text-primary)]">{item.name}</h3>
@@ -78,6 +79,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </main>
   );
 }

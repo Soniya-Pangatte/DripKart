@@ -10,8 +10,9 @@ export default function HomePage() {
 
       {/* 2. Fall Collection / Featured Products */}
       <FeaturedProducts />
-{/* 3. Inspired Banner - Full Width Video Section */}
-<section className="relative mt-20 h-[500px] overflow-hidden flex items-center justify-center">
+
+      {/* 3. Inspired Banner - Full Width Video Section */}
+      <section className="relative mt-20 h-[500px] overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8">
 
   <video
   className="absolute inset-0 w-full h-full object-cover"
@@ -23,9 +24,11 @@ export default function HomePage() {
 />
   <div className="absolute inset-0 bg-black/10" />
 
-  <h2 className="relative z-10 text-white text-5xl md:text-6xl font-light tracking-wide text-center">
-    Inspired by your life
-  </h2>
+  <div className="relative z-10 w-full max-w-7xl mx-auto">
+    <h2 className="text-white text-5xl md:text-6xl font-light tracking-wide text-center">
+      Inspired by your life
+    </h2>
+  </div>
 
 </section>
       <TestimonialsSection />

@@ -20,9 +20,9 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="flex-grow bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased flex items-center justify-center min-h-screen py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl w-full overflow-hidden rounded-[32px] border border-[var(--border)] bg-[var(--surface)] shadow-[0_25px_50px_rgba(44,36,31,0.08)] transition duration-300 hover:shadow-[0_28px_60px_rgba(44,36,31,0.1)]">
-        <div className="bg-[var(--bg-secondary)] border-b border-[var(--border)] px-8 py-12 text-center">
+    <main className="flex-grow bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased flex items-center justify-center min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl w-full overflow-hidden rounded-3xl border border-[var(--border-primary)] bg-[var(--surface-card)] shadow-[var(--shadow-hover)] transition duration-300 hover:shadow-[var(--shadow-soft)]">
+        <div className="bg-[var(--bg-section)] border-b border-[var(--border-primary)] px-8 py-12 text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--text-secondary)]">
             Customer care
           </p>

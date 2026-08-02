@@ -84,7 +84,7 @@ export default function HeroSection() {
       </AnimatePresence>
 
       {/* 2. Overlaid Marketing Copy Controls */}
-      <div className="absolute inset-0 flex items-center px-6 md:px-20 z-10 max-w-7xl mx-auto pointer-events-none">
+      <div className="absolute inset-0 flex items-center px-4 sm:px-6 lg:px-8 z-10 max-w-7xl mx-auto pointer-events-none">
         <div className="max-w-xl text-white space-y-3 md:space-y-5 pointer-events-auto">
           <motion.p
             key={`sub-${currentBanner.id}`}

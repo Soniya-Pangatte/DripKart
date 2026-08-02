@@ -3,8 +3,8 @@ import { Star } from "lucide-react";
 
 export default function TestimonialsSection() {
   return (
-    <section className="mt-24" id="about">
-      <div className="mx-auto max-w-3xl text-center">
+    <section className="py-20 px-4 sm:px-6 lg:px-8" id="about">
+      <div className="mx-auto max-w-7xl text-center">
         <p className="text-sm uppercase tracking-[0.35em] text-[var(--text-muted)]">Testimonials</p>
         <h2 className="mt-4 text-4xl font-serif font-light text-[var(--text-primary)] sm:text-5xl">Real reviews from minimal shoppers.</h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-[var(--text-secondary)]">

@@ -26,8 +26,8 @@ export default function FeaturedProducts() {
   }, []);
 
   return (
-    <section id="shop" className="mt-28">
-      <div className="mx-auto max-w-3xl space-y-4 text-center">
+    <section id="shop" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl space-y-4 text-center">
         <p className="text-sm uppercase tracking-[0.35em] text-[var(--text-muted)]">
           Featured Products
         </p>

@@ -99,7 +99,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <main className="w-full max-w-7xl mx-auto min-h-screen px-4 py-8 md:py-16 font-sans text-zinc-900 bg-white">
+    <main className="w-full max-w-7xl mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-20 font-sans text-[var(--text-primary)] bg-[var(--bg-primary)]">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
         
         {/* ================= LEFT SIDE: INTERACTIVE IMAGE GALLERY GALLERY ================= */}
@@ -111,8 +111,8 @@ export default function ProductDetails() {
               <button
                 key={index}
                 onClick={() => setActiveImageIndex(index)}
-                className={`w-16 h-20 rounded-xl overflow-hidden bg-zinc-100 border-2 shrink-0 transition ${
-                  activeImageIndex === index ? "border-zinc-900" : "border-transparent opacity-70 hover:opacity-100"
+                className={`w-16 h-20 rounded-xl overflow-hidden bg-[var(--surface-input)] border-2 shrink-0 transition ${
+                  activeImageIndex === index ? "border-[var(--btn-primary)]" : "border-transparent opacity-70 hover:opacity-100"
                 }`}
               >
                 <img src={imgUrl} alt="Thumbnail view" className="w-full h-full object-cover" />
@@ -121,11 +121,11 @@ export default function ProductDetails() {
           </div>
 
           {/* Large Primary Showcase Canvas Window */}
-          <div className="flex-grow aspect-[3/4] rounded-2xl overflow-hidden bg-zinc-100 relative group border border-zinc-100">
-            <span className="absolute top-4 left-4 bg-amber-400 text-black text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md z-10 shadow-sm">
+          <div className="flex-grow aspect-[3/4] rounded-3xl overflow-hidden bg-[var(--surface-input)] relative group border border-[var(--border-primary)] shadow-[var(--shadow-soft)]">
+            <span className="absolute top-4 left-4 bg-[var(--surface-card)] text-[var(--text-secondary)] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full z-10 shadow-sm">
               Bestseller
             </span>
-            <button className="absolute top-4 right-4 w-9 h-9 bg-white rounded-full flex items-center justify-center text-zinc-400 hover:text-red-500 shadow-md transition z-10">
+            <button className="absolute top-4 right-4 w-9 h-9 bg-[var(--surface-card)] rounded-full flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--btn-primary)] shadow-sm transition z-10">
               <Heart className="w-4 h-4" />
             </button>
             <img
@@ -142,14 +142,14 @@ export default function ProductDetails() {
           
           {/* Title Header Blocks & Ratings Context */}
           <div className="space-y-2">
-            <div className="flex items-center gap-1.5 text-xs font-semibold bg-zinc-100 px-2.5 py-1 rounded-md w-max">
-              <span className="flex items-center text-amber-500 gap-0.5 font-bold">
-                {PRODUCT_DATA.rating} <Star className="w-3.5 h-3.5 fill-amber-500" />
+            <div className="flex items-center gap-1.5 text-xs font-semibold bg-[var(--surface-input)] px-2.5 py-1 rounded-full w-max">
+              <span className="flex items-center text-[var(--accent)] gap-0.5 font-bold">
+                {PRODUCT_DATA.rating} <Star className="w-3.5 h-3.5 fill-[var(--accent)]" />
               </span>
-              <span className="text-zinc-400">|</span>
-              <span className="text-zinc-600">{PRODUCT_DATA.reviewsCount} Reviews</span>
+              <span className="text-[var(--text-secondary)]">|</span>
+              <span className="text-[var(--text-secondary)]">{PRODUCT_DATA.reviewsCount} Reviews</span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-black text-zinc-950 tracking-tight leading-tight">
+            <h1 className="text-2xl md:text-3xl font-black text-[var(--text-primary)] tracking-tight leading-tight">
               {PRODUCT_DATA.name}
             </h1>
           </div>
@@ -157,31 +157,31 @@ export default function ProductDetails() {
           {/* Pricing Stack Display Component */}
           <div className="space-y-1">
             <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-black text-zinc-950">₹{currentPrice}</span>
-              <span className="text-base text-zinc-400 line-through">₹{PRODUCT_DATA.originalPrice}</span>
-              <span className="text-sm font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">
+              <span className="text-3xl font-black text-[var(--text-primary)]">₹{currentPrice}</span>
+              <span className="text-base text-[var(--text-secondary)] line-through">₹{PRODUCT_DATA.originalPrice}</span>
+              <span className="text-sm font-bold text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-0.5 rounded-full">
                 {PRODUCT_DATA.discountPercent}% OFF
               </span>
             </div>
-            <p className="text-xs text-zinc-500">Inclusive of all taxes</p>
+            <p className="text-xs text-[var(--text-secondary)]">Inclusive of all taxes</p>
           </div>
 
           {/* Promotional Value Coupons Banner Container */}
-          <div className="border border-dashed border-amber-400 bg-amber-50/50 p-4 rounded-xl flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-amber-400 text-black flex items-center justify-center font-bold text-sm shrink-0">
+          <div className="border border-[var(--accent)] border-dashed bg-[var(--accent)]/10 p-4 rounded-3xl flex items-start gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[var(--accent)] text-[var(--text-primary)] flex items-center justify-center font-bold text-sm shrink-0">
               %
             </div>
             <div className="text-xs space-y-1">
-              <p className="font-bold text-zinc-900">Get Flat 5% Additional Discount</p>
-              <p className="text-zinc-600">On cart values worth ₹1999 or above.</p>
-              <p className="pt-1 font-mono text-zinc-500">Use Code: <span className="font-bold text-zinc-900">{PRODUCT_DATA.couponCode}</span></p>
+              <p className="font-bold text-[var(--text-primary)]">Get Flat 5% Additional Discount</p>
+              <p className="text-[var(--text-secondary)]">On cart values worth ₹1999 or above.</p>
+              <p className="pt-1 font-mono text-[var(--text-secondary)]">Use Code: <span className="font-bold text-[var(--text-primary)]">{PRODUCT_DATA.couponCode}</span></p>
             </div>
           </div>
 
           {/* Color Switch Matrix Container Selector */}
           <div className="space-y-3">
-            <label className="text-xs uppercase font-bold tracking-widest text-zinc-500 block">
-              Color: <span className="text-zinc-900 lowercase font-medium">({currentVariant.colorName})</span>
+            <label className="text-xs uppercase font-bold tracking-widest text-[var(--text-secondary)] block">
+              Color: <span className="text-[var(--text-primary)] lowercase font-medium">({currentVariant.colorName})</span>
             </label>
             <div className="flex flex-wrap gap-3">
               {PRODUCT_DATA.variants.map((v, idx) => (
@@ -189,8 +189,8 @@ export default function ProductDetails() {
                   key={v.colorName}
                   onClick={() => handleVariantChange(idx)}
                   title={v.colorName}
-                  className={`w-12 h-14 rounded-xl overflow-hidden border-2 bg-zinc-50 transition shrink-0 transform active:scale-95 ${
-                    selectedVariantIndex === idx ? "border-zinc-900 ring-2 ring-zinc-900/10 scale-105" : "border-zinc-200 opacity-80 hover:opacity-100"
+                  className={`w-12 h-14 rounded-xl overflow-hidden border-2 bg-[var(--surface-input)] transition shrink-0 transform active:scale-95 ${
+                    selectedVariantIndex === idx ? "border-[var(--btn-primary)] ring-2 ring-[var(--btn-primary)]/10 scale-105" : "border-[var(--border-primary)] opacity-80 hover:opacity-100"
                   }`}
                 >
                   <img src={v.images[0]} alt={v.colorName} className="w-full h-full object-cover" />
@@ -202,10 +202,10 @@ export default function ProductDetails() {
           {/* Size Choice Grid Selector Matrix */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <label className="text-xs uppercase font-bold tracking-widest text-zinc-500">
+              <label className="text-xs uppercase font-bold tracking-widest text-[var(--text-secondary)]">
                 Select Size
               </label>
-              <button className="text-xs font-bold text-zinc-900 underline hover:text-zinc-600">
+              <button className="text-xs font-bold text-[var(--text-primary)] underline hover:text-[var(--text-secondary)]">
                 Size Guide
               </button>
             </div>
@@ -214,10 +214,10 @@ export default function ProductDetails() {
                 <button
                   key={sz}
                   onClick={() => setSelectedSize(sz)}
-                  className={`min-w-[54px] h-11 border text-xs font-bold rounded-xl transition ${
+                  className={`min-w-[54px] h-11 border text-xs font-bold rounded-2xl transition ${
                     selectedSize === sz
-                      ? "bg-zinc-950 text-white border-zinc-950 shadow-md"
-                      : "border-zinc-200 text-zinc-800 hover:border-zinc-900"
+                      ? "bg-[var(--btn-primary)] text-white border-[var(--btn-primary)] shadow-[var(--shadow-soft)]"
+                      : "border-[var(--border-primary)] text-[var(--text-primary)] hover:border-[var(--btn-primary)]"
                   }`}
                 >
                   {sz}
@@ -228,23 +228,23 @@ export default function ProductDetails() {
 
           {/* Primary Action Button Triggers Row */}
           <div className="flex items-center gap-3 pt-4">
-            <button className="flex-grow h-14 bg-zinc-950 text-white text-xs uppercase tracking-widest font-bold rounded-xl hover:bg-zinc-900 transition flex items-center justify-center gap-2 shadow-lg">
+            <button className="flex-grow h-14 luxury-button-primary flex items-center justify-center gap-2">
               <ShoppingBag className="w-4 h-4" /> Add To Bag
             </button>
           </div>
 
           {/* Core Trust Metrics Panel Row */}
-          <div className="border-t border-zinc-100 pt-6 grid grid-cols-3 gap-4 text-center text-[10px] font-bold uppercase tracking-wider text-zinc-600">
+          <div className="border-t border-[var(--border-primary)] pt-6 grid grid-cols-3 gap-4 text-center text-[10px] font-bold uppercase tracking-wider text-[var(--text-secondary)]">
             <div className="flex flex-col items-center gap-1.5">
-              <Truck className="w-5 h-5 text-zinc-400" />
+              <Truck className="w-5 h-5 text-[var(--text-secondary)]" />
               <span>Fast Shipping</span>
             </div>
             <div className="flex flex-col items-center gap-1.5">
-              <RotateCcw className="w-5 h-5 text-zinc-400" />
+              <RotateCcw className="w-5 h-5 text-[var(--text-secondary)]" />
               <span>7 Day Returns</span>
             </div>
             <div className="flex flex-col items-center gap-1.5">
-              <ShieldCheck className="w-5 h-5 text-zinc-400" />
+              <ShieldCheck className="w-5 h-5 text-[var(--text-secondary)]" />
               <span>100% Genuine</span>
             </div>
           </div>

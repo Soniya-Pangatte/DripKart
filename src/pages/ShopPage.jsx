@@ -49,7 +49,7 @@ export default function ShopPage() {
   }
 
   return (
-    <main className="flex-grow bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased py-20 px-6 md:px-10 max-w-7xl mx-auto w-full min-h-[80vh]">
+    <main className="flex-grow bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full min-h-[80vh]">
       <div className="mb-12">
         <h1 className="text-4xl md:text-5xl font-serif font-light mb-4">Shop All</h1>
         <p className="text-[var(--text-secondary)] font-light text-lg">Discover our complete collection.</p>

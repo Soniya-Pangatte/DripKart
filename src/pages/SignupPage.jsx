@@ -28,8 +28,8 @@ export const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[var(--bg-primary)] p-4 sm:p-8 pt-28 pb-20">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-[var(--shadow-hover)] bg-[var(--surface-card)] border border-[var(--border-primary)]">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[var(--bg-primary)] px-4 sm:px-6 lg:px-8 py-20">
+      <div className="w-full max-w-7xl flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-[var(--shadow-hover)] bg-[var(--surface-card)] border border-[var(--border-primary)]">
         
         {/* Shared Split Brand Panel (45%) */}
         <AuthArtPanel />

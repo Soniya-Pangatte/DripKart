@@ -1,12 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/lib/supabaseClient";
 import { useCartStore } from "@/lib/cartStore";
-import { Heart, ShoppingBag, ShieldCheck, RotateCcw, Truck } from "lucide-react";
+import { ArrowLeft, Heart, ShoppingBag, ShieldCheck, RotateCcw, Truck } from "lucide-react";
 
 export default function ProductPage() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -95,7 +96,16 @@ export default function ProductPage() {
   };
 
   return (
-    <main className="w-full max-w-7xl mx-auto min-h-screen px-6 py-12 md:py-20 bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased">
+    <main className="w-full max-w-7xl mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-20 bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased">
+      <button
+        type="button"
+        onClick={() => navigate(-1)}
+        className="mb-6 inline-flex items-center gap-2 rounded-2xl border border-[var(--border-primary)] bg-[var(--bg-section)] px-4 py-3 text-sm font-medium text-[var(--text-primary)] shadow-[var(--shadow-soft)] transition duration-200 hover:bg-[var(--surface-input)] hover:text-[var(--btn-primary)]"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        Back
+      </button>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Large Product Image Display Container */}
